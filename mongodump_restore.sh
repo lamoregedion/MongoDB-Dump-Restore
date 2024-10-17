@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Defining an array of the new database names
-new_names=("TipCorePESharding_1" "TipCorePESharding_2" "TipCorePESharding_3")
+new_names=("testDB_1" "testDB_2" "testDB_3")
 
 # Creating a log file with the current date and time
-log_file="tipcorepesharding_mongodump_restore_log$(date '+%Y-%m-%d_%H-%M-%S').log"
+log_file="testDB_mongodump_restore_log$(date '+%Y-%m-%d_%H-%M-%S').log"
 
 # Set email variables
 recipient="your_email@example.com"  # Change to your email
@@ -15,8 +15,8 @@ for new_name in "${new_names[@]}"; do
   echo "[$(date)] Running mongodump and mongorestore for $new_name" | tee -a $log_file
 
   # Run mongodump and mongorestore commands with logging
-  mongodump --archive --gzip --uri "mongodb+srv://<username>:<password>@<cluster_url>/<database>" 2>> $log_file | \
-  mongorestore --archive --gzip --nsFrom='<database>.*' --nsTo="$new_name.*" --uri "mongodb+srv://<username>:<password>@<cluster_url>" 2>> $log_file
+  mongodump --archive --gzip --uri "mongodb+srv://<username>:<password>@<cluster_url>/testDB" 2>> $log_file | \
+  mongorestore --archive --gzip --nsFrom='testDB.*' --nsTo="$new_name.*" --uri "mongodb+srv://<username>:<password>@<cluster_url>" 2>> $log_file
 
   if [ $? -eq 0 ]; then
     echo "[$(date)] Successfully restored $new_name" | tee -a $log_file
