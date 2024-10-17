@@ -17,4 +17,4 @@ The script automates the process of creating copies of a MongoDB database using 
 1. Clone this repository:
 
    ```bash
-   git clone https://github.com/your_username/mongodb-dump-restore.git
+   git clone https://github.com/lamoregedion/MongoDB-Dump-Restore.git
